@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Scroll Reveal</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="box">
+		<h2>Scroll Down to Reveal Text</h2>
+		<p class="text">Lorem ipsum dolor sit, amet
+			consectetur adipisicing elit. Aliquid neque
+			quisquam ipsam ex repellat nesciunt eos ratione
+			expedita consequuntur vel, reiciendis doloribus
+			veniam quo magni voluptate vitae deserunt quis quasrem
+			fugit aut accusamus. Blanditiis quia dicta sintautem esse.
+		</p>
+	</div>
+	<script>
+		let textElement = document.querySelector('.text');
+		let textContent = textElement.textContent;
+		textElement.innerHTML = '';
+
+		for(let char of textContent){
+			let span = document.createElement('span');
+			span.textContent = char;
+			textElement.appendChild(span);
+		}
+
+		let spans = document.querySelectorAll('span');
+		window.addEventListener('scroll', () => {
+			let scrollDistance = window.scrollY;
+			spans.forEach((span, index) => {
+				if(scrollDistance >= (index + 1) * 10) {
+					span.classList.add('active');
+				} else {
+					span.classList.remove('active');
+				}
+			})
+		})
+	</script>
+</body>
+</html>
